@@ -4,4 +4,12 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>CheckPrimeServlet</servlet-name>
+    <servlet-class>cn.rbcheng.rsa.servlet.CheckPrimeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckPrimeServlet</servlet-name>
+    <url-pattern>/CheckPrimeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
