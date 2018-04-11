@@ -4,6 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
   <servlet>
     <servlet-name>CheckPrimeServlet</servlet-name>
     <servlet-class>cn.rbcheng.rsa.servlet.CheckPrimeServlet</servlet-class>
@@ -11,5 +12,23 @@
   <servlet-mapping>
     <servlet-name>CheckPrimeServlet</servlet-name>
     <url-pattern>/CheckPrimeServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CheckPublicKeyServlet</servlet-name>
+    <servlet-class>cn.rbcheng.rsa.servlet.CheckPublicKeyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckPublicKeyServlet</servlet-name>
+    <url-pattern>/CheckPublicKeyServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GeneratePublicKeyServlet</servlet-name>
+    <servlet-class>cn.rbcheng.rsa.servlet.GeneratePublicKeyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GeneratePublicKeyServlet</servlet-name>
+    <url-pattern>/GeneratePublicKeyServlet</url-pattern>
   </servlet-mapping>
 </web-app>

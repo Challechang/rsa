@@ -15,8 +15,18 @@
                    <td>p</td>
                    <td><textarea id="rsa_p" onchange="checkRSAp()"></textarea></td>
                </tr>
+
+               <tr>
                     <td>q</td>
                     <td><textarea id="rsa_q" onchange="checkRSAq()"></textarea></td>
+               </tr>
+
+               <tr>
+                   <td>e</td>
+                   <td><textarea id="rsa_e" onchange="checkRSAe()"></textarea></td>
+                   <td><a class="button border-blue button-little" onclick="generateRSAe()">generate</a></td>
+               </tr>
+
                <tr>
                     <td>plaintext</td>
                     <td><textarea id="rsa_plaintext"></textarea></td>
@@ -26,6 +36,7 @@
                     <td>ciphertext</td>
                     <td><textarea id="rsa_ciphertext"></textarea></td>
                </tr>
+
                <tr>
                    <td><a class="button border-blue button-little" href="#">encode</a></td>
                    <td><a class="button border-yellow button-little" href="#">decode</a></td>

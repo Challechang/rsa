@@ -10,33 +10,36 @@ import java.math.BigInteger;
 import static cn.rbcheng.rsa.servlet.Utils.*;
 
 /**
- * Created by rbcheng on 18-4-10.
+ * Created by rbcheng on 18-4-11.
  * Email: rbcheng@qq.com
  */
-public class CheckPrimeServlet extends HttpServlet {
-
+public class CheckPublicKeyServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sNum = req.getParameter("num");
+        String sPublicKey = req.getParameter("public_key");
+        String sRsaP = req.getParameter("rsa_p");
+        String sRsaQ = req.getParameter("rsa_q");
 
-        if (isNull(sNum)) {
+        if (isNull(sPublicKey) | isNull(sRsaP) | isNull(sRsaQ)) {
             resp.getWriter().print(NOT_NUMBER);
             return;
         }
 
         try {
-            BigInteger num = new BigInteger(sNum);
+            BigInteger publicKey = new BigInteger(sPublicKey);
+            BigInteger rsaP = new BigInteger(sRsaP);
+            BigInteger rsaQ = new BigInteger(sRsaQ);
 
-            if (num.isProbablePrime(CERTAINTY)) {
-                // num is Prime
-                resp.getWriter().print(IS_PRIME);
+            BigInteger phi = rsaP.subtract(BigInteger.ONE).multiply(rsaQ.subtract(BigInteger.ONE));
+
+            if (phi.gcd(publicKey).equals(BigInteger.ONE)) {
+                resp.getWriter().print(LEGAL_PUBLIC_KEY);
             } else {
-                resp.getWriter().print(NOT_PRIME);
+                resp.getWriter().print(ILLEGAL_PUBLIC_KEY);
             }
 
         } catch (NumberFormatException e) {
-            // sNum is Not a Number
             resp.getWriter().print(NOT_NUMBER);
         }
     }
@@ -45,5 +48,4 @@ public class CheckPrimeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
     }
-
 }
