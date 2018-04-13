@@ -49,4 +49,13 @@
     <servlet-name>DecodeServlet</servlet-name>
     <url-pattern>/DecodeServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GeneratePrimeServlet</servlet-name>
+    <servlet-class>cn.rbcheng.rsa.servlet.GeneratePrimeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GeneratePrimeServlet</servlet-name>
+    <url-pattern>/GeneratePrimeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

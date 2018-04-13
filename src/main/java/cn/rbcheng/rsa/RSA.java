@@ -24,6 +24,8 @@ public interface RSA extends Serializable {
      */
     BigInteger encrypt(BigInteger bigInteger);
 
+    String encrypt(String plaintext);
+
     /**
      * Encrypts a message using the encrypt method checking if message blocks
      * are valid
@@ -55,6 +57,8 @@ public interface RSA extends Serializable {
      * @return decrypted message represented by a Java BigInteger type
      */
     BigInteger decrypt(BigInteger encrypted);
+
+    String decrypt(String ciphertext);
 
     /**
      * decrypt a list of encrypted messages through <b>M = C^d mod n</b> where:

@@ -25,14 +25,14 @@ import java.util.logging.Logger;
 public class RSAImpl implements RSA {
 
     private final static BigInteger ONE = new BigInteger("1");
-    private BigInteger privateKey;
-    private BigInteger e; //part of public key - relative prime of phi 
-    private BigInteger modulus; //part of public key obtained with n = p*q
-    private BigInteger p; //prime
-    private BigInteger q; //prime
-    private final BigInteger phi;// obtained with phi = (p-1)*(q-1)
+    public BigInteger privateKey;
+    public BigInteger e; //part of public key - relative prime of phi
+    public BigInteger modulus; //part of public key obtained with n = p*q
+    public BigInteger p; //prime
+    public BigInteger q; //prime
+    public final BigInteger phi;// obtained with phi = (p-1)*(q-1)
 
-    RSAImpl(BigInteger p, BigInteger q, BigInteger e) {
+    public RSAImpl(BigInteger p, BigInteger q, BigInteger e) {
 
         phi = (p.subtract(ONE)).multiply(q.subtract(ONE)); //phi = (p-1)*(q-1) 
         this.e = e;
@@ -50,11 +50,25 @@ public class RSAImpl implements RSA {
         return bigInteger.modPow(e, modulus);
     }
 
+    @Override
+    public String encrypt(String plaintext) {
+        List<BigInteger> encryption = encryptMessage(plaintext);
+        String ciphertext = RSAUtils.bigIntegerSum(encryption);
+        return ciphertext;
+    }
+
+    @Override
+    public String decrypt(String ciphertext) {
+        BigInteger decryptInteger = decrypt(new BigInteger(ciphertext));
+        String plaintext = new String(decryptInteger.toByteArray(), Charset.forName("UTF-8"));
+        return plaintext;
+    }
+
     public List<BigInteger> encryptMessage(final String message) {
         List<BigInteger> toEncrypt = new ArrayList<BigInteger>();
         BigInteger messageBytes = new BigInteger(message.getBytes());
         if (isModulusSmallerThanMessage(messageBytes)) {
-            toEncrypt = getValidEncryptionBlocks(Utils.splitMessages(new ArrayList<String>() {
+            toEncrypt = getValidEncryptionBlocks(RSAUtils.splitMessages(new ArrayList<String>() {
                 {
                     add(message);
                 }
@@ -128,7 +142,7 @@ public class RSAImpl implements RSA {
         List<BigInteger> toSign = new ArrayList<BigInteger>();
         BigInteger messageBytes = new BigInteger(message.getBytes());
         if (isModulusSmallerThanMessage(messageBytes)) {
-            toSign = getValidEncryptionBlocks(Utils.splitMessages(new ArrayList<String>() {
+            toSign = getValidEncryptionBlocks(RSAUtils.splitMessages(new ArrayList<String>() {
                 {
                     add(message);
                 }
@@ -213,7 +227,7 @@ public class RSAImpl implements RSA {
             }
             return validBlocks;
         } else {//message is bigger than modulus so we have o split it
-            return getValidEncryptionBlocks(Utils.splitMessages(messages));
+            return getValidEncryptionBlocks(RSAUtils.splitMessages(messages));
         }
 
     }
@@ -223,7 +237,7 @@ public class RSAImpl implements RSA {
         List<BigInteger> toDecimal = new ArrayList<BigInteger>();
         BigInteger messageBytes = new BigInteger(message.getBytes());
         if (isModulusSmallerThanMessage(messageBytes)) {
-            toDecimal = getValidEncryptionBlocks(Utils.splitMessages(new ArrayList<String>() {
+            toDecimal = getValidEncryptionBlocks(RSAUtils.splitMessages(new ArrayList<String>() {
                 {
                     add(message);
                 }

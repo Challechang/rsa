@@ -64,14 +64,21 @@ public class Main {
 
         List<BigInteger> decrypt = RSA.decrypt(encryption);
         List<BigInteger> verify = RSA.verify(signed);
+
+        String ciphertext = RSAUtils.bigIntegerSum(encryption);
+        BigInteger decryptInteger = RSA.decrypt(new BigInteger(ciphertext));
+        String plaintext = new String(decryptInteger.toByteArray());
+
+
         System.out.println();
-        System.out.println("message(plain text)   = " + Utils.bigIntegerToString(decimalMessage));
-        System.out.println("message(decimal)      = " + Utils.bigIntegerSum(decimalMessage));
-        System.out.println("encripted(decimal)    = " + Utils.bigIntegerSum(encryption));
-        System.out.println("decrypted(plain text) = " + Utils.bigIntegerToString(decrypt));
-        System.out.println("decrypted(decimal)    = " + Utils.bigIntegerSum(decrypt));
-        System.out.println("signed(decimal)       = " + Utils.bigIntegerSum(signed));
-        System.out.println("verified(plain text)  = " + Utils.bigIntegerToString(verify));
-        System.out.println("verified(decimal)     = " + Utils.bigIntegerSum(verify));
+        System.out.println("...." + plaintext);
+        System.out.println("message(plain text)   = " + RSAUtils.bigIntegerToString(decimalMessage));
+        System.out.println("message(decimal)      = " + RSAUtils.bigIntegerSum(decimalMessage));
+        System.out.println("encripted(decimal)    = " + RSAUtils.bigIntegerSum(encryption));
+        System.out.println("decrypted(plain text) = " + RSAUtils.bigIntegerToString(decrypt));
+        System.out.println("decrypted(decimal)    = " + RSAUtils.bigIntegerSum(decrypt));
+//        System.out.println("signed(decimal)       = " + RSAUtils.bigIntegerSum(signed));
+//        System.out.println("verified(plain text)  = " + RSAUtils.bigIntegerToString(verify));
+//        System.out.println("verified(decimal)     = " + RSAUtils.bigIntegerSum(verify));
     }
 }
