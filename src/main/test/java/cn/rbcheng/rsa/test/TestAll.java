@@ -14,16 +14,22 @@ public class TestAll {
     @Test
     public void testBigInteger() {
         String s = null;
-        BigInteger num = new BigInteger("5700734181645378434561188374130529072194886062117");
+        BigInteger num = new BigInteger("-1");
         System.out.println(num.isProbablePrime(10000));
     }
 
     @Test
     public void testGeneratePrime() {
-        for (int i = 0; i < 1000; i++) {
-            BigInteger prime = new BigInteger(5, 16, new Random());
+        for (int i = 0; i < 1; i++) {
+            BigInteger prime = new BigInteger("2");
+            for (int j = 0; j < 1000; j++) {
 
-            System.out.println(prime.toString());
+                System.out.println("big len: " + prime.bitLength());
+                System.out.println("bit count: " + prime.bitCount());
+                System.out.println(prime);
+                prime = prime.nextProbablePrime();
+            }
+//            System.out.println(prime.toString());
         }
 
     }

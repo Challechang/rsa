@@ -38,8 +38,8 @@
                </tr>
 
                <tr>
-                   <td><a class="button border-blue button-little" href="#">encode</a></td>
-                   <td><a class="button border-yellow button-little" href="#">decode</a></td>
+                   <td><a class="button border-blue button-little" onclick="encode()">encode</a></td>
+                   <td><a class="button border-yellow button-little" onclick="decode()">decode</a></td>
                </tr>
            </table>
        </div>

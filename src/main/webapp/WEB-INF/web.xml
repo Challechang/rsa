@@ -31,4 +31,22 @@
     <servlet-name>GeneratePublicKeyServlet</servlet-name>
     <url-pattern>/GeneratePublicKeyServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EncodeServlet</servlet-name>
+    <servlet-class>cn.rbcheng.rsa.servlet.EncodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EncodeServlet</servlet-name>
+    <url-pattern>/EncodeServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DecodeServlet</servlet-name>
+    <servlet-class>cn.rbcheng.rsa.servlet.DecodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DecodeServlet</servlet-name>
+    <url-pattern>/DecodeServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
